@@ -1,3 +1,5 @@
+import {useNavigation} from '@react-navigation/native';
+
 const {useEffect, useState, useCallback, useRef} = require('react');
 const {
   default: useTrackViewModel,
@@ -11,6 +13,8 @@ const usePlaylistDetailController = id => {
 
   const offset = useRef(0);
   const total = useRef(null);
+
+  const navigation = useNavigation();
   useEffect(() => {
     getPlaylistDetail();
   }, []);
@@ -33,11 +37,19 @@ const usePlaylistDetailController = id => {
         setIsLoading(false);
       });
   }, [tracks, isLoading]);
+
+  const onTrackPress = (id, name) => {
+    navigation.navigate('TrackDetail', {
+      id,
+      name,
+    });
+  };
   return {
     tracks,
     getPlaylistDetail,
     isLoading,
     isError,
+    onTrackPress,
   };
 };
 

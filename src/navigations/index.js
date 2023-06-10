@@ -27,7 +27,11 @@ const Navigations = () => {
             title: route.params.name,
           })}
         />
-        <Stack.Screen name="TrackDetail" component={TrackDetail} />
+        <Stack.Screen
+          name="TrackDetail"
+          component={TrackDetail}
+          options={{title: ''}}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

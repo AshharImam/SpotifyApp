@@ -1,16 +1,19 @@
-import {View, Text, Image, StyleSheet} from 'react-native';
+import {View, Text, Image, StyleSheet, TouchableOpacity} from 'react-native';
 import React from 'react';
 
-const TrackCard = ({id, name, image, artists, popularity}) => {
+const TrackCard = ({id, name, image, artists, popularity, onPress}) => {
   return (
-    <View style={styles.container}>
+    <TouchableOpacity
+      activeOpacity={0.8}
+      onPress={() => onPress(id, name)}
+      style={styles.container}>
       <Image source={{uri: image}} style={styles.image} />
       <View>
         <Text style={styles.title}>{name}</Text>
         <Text>{artists?.map(e => e?.name).join(', ')}</Text>
         <Text>Popularity: {popularity}</Text>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 

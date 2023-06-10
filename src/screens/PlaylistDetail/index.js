@@ -5,9 +5,9 @@ import usePlaylistDetailController from '../../view-controllers/usePlaylistDetai
 import TrackCard from '../../components/TrackCard';
 
 const PlaylistDetail = ({route}) => {
-  const {id, image} = route.params;
-  const {tracks, getPlaylistDetail, isLoading} =
-    usePlaylistDetailController(id);
+  const {id, image, name} = route.params;
+  const {tracks, getPlaylistDetail, isLoading, onTrackPress} =
+    usePlaylistDetailController(id, name);
   const renderHeader = useCallback(() => {
     return <Image source={{uri: image}} style={styles.image} />;
   }, []);
@@ -16,7 +16,7 @@ const PlaylistDetail = ({route}) => {
       id,
       name,
       album: {
-        images: [image],
+        images: [, image],
       },
       artists,
       popularity,
@@ -28,6 +28,7 @@ const PlaylistDetail = ({route}) => {
         image={image.url}
         artists={artists}
         popularity={popularity}
+        onPress={onTrackPress}
       />
     );
   }, []);
